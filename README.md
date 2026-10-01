@@ -1,4 +1,4 @@
-# QR Press
+# QR Forge
 
 A free, privacy-first QR code generator that runs entirely in your browser. Create scannable codes for links, plain text, emails, phone numbers and Wi‑Fi networks, style them with colors, gradients and logos, and export as PNG or SVG — all without anything ever leaving your device.
 
