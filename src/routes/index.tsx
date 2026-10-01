@@ -1,24 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { QRGenerator } from "@/components/qr/QRGenerator";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "QR Press — Free QR Code Generator & Designer" },
+      { name: "description", content: "Create URL, text, email, phone and Wi‑Fi QR codes. Customize colors, gradients, logos and download PNG or SVG." },
+      { property: "og:title", content: "QR Press — QR Code Generator & Designer" },
+      { property: "og:description", content: "Design scannable QR codes in your browser and download them instantly." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: QRGenerator,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
