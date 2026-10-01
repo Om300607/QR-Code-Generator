@@ -45,7 +45,7 @@ export function QRGenerator() {
     cornersSquareOptions: { color: style.fg },
     cornersDotOptions: { color: style.gradient ? style.fg2 : style.fg },
     backgroundOptions: { color: style.bg },
-    image: style.logo ?? undefined,
+    image: style.logo ?? "",
     imageOptions: { margin: 6, imageSize: 0.3, hideBackgroundDots: true, crossOrigin: "anonymous" },
   }), [data, style]);
 

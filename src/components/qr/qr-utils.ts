@@ -105,12 +105,12 @@ export function buildPayload(type: QRType, c: Content): { data: string; error: s
 
 function lum(hex: string) {
   const n = hex.replace("#", "");
-  const rgb = [0, 2, 4].map((i) => parseInt(n.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
-  return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+  const [r = 0, g = 0, b = 0] = [0, 2, 4].map((i) => (parseInt(n.slice(i, i + 2), 16) || 0) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 const contrast = (a: string, b: string) => {
-  const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m);
-  return (x + 0.05) / (y + 0.05);
+  const la = lum(a), lb = lum(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
 };
 
 export function readabilityWarnings(s: Style): string[] {
